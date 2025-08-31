@@ -1,13 +1,7 @@
 #!/bin/bash
 
-echo "Please enter your username:"
+FRUIT=("apple" "kiwi" "orange")
 
-read -s USERNAME
-
-echo "entered username is : $USERNAME"
-
-echo "Please enter your password"
-
-read -s PASSWORD
-
-echo "entered password is : $PASSWORD"
+echo "First name of the fruit ${FRUIT[0]}"
+echo "Second name of thevfruit ${FRUIT[1]}"
+echo "Third name of the fruit is ${FRUIT[2]}"
