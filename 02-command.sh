@@ -2,7 +2,7 @@
 
 USERID=$(id -u)
 
-echo "user id is $USERID"
+echo "user id is: $USERID"
 
 if [ $USERID -ne 0 ]
 then 
@@ -17,12 +17,12 @@ dnf list insatlled mysql
 if [ $? -ne 0 ]
 then 
     echo "mysql server is not installed. please install"
-    dnf install mysql-server -y
+    dnf install mysql -y
     if [ $? -ne 0 ]
     then
-        echo "installed mysql successfully"
+        echo "installed mysql not success"
     else
-        echo "installation is not successfully"
+        echo "installed successfully"
     fi
 else
     echo "mysql server already installed. nothing to do"
