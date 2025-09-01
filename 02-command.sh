@@ -10,3 +10,20 @@ then
     exit 1
 fi
 
+#install mysql
+
+dnf list insatlled mysql
+
+if [ $? -ne 0 ]
+then 
+    echo "mysql server is not installed. please install"
+    dnf install mysql-server -y
+    if [ $? -ne 0 ]
+    then
+        echo "installed mysql successfully"
+    else
+        echo "installation is not successfully"
+    fi
+else
+    echo "mysql server already installed. nothing to do"
+fi
