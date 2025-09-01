@@ -1,10 +1,10 @@
 #!/bin/bash
 
-Person1=$1
+USERID=$(id -u)
 
-if [ $Person1 -ne 20 ]
+if [ $USERID -ne 0 ]
 then 
-    echo "Given number $Person1 is not equal to 20"
-else
-    echo "Given number $Person1 is equal to 20"
+    echo "please run the script with root privileages"
+    exit 1
 fi
+
