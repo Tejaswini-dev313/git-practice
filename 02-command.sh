@@ -2,29 +2,42 @@
 
 USERID=$(id -u)
 
-echo "user id is: $USERID"
+echo "user id is $USERID"
 
 if [ $USERID -ne 0 ]
-then 
-    echo "please run the script with root privileages"
+then
+    echo "run the scrip with root priveleges"
     exit 1
 fi
 
-#install mysql
-
-dnf list insatlled mysql
+dnf list installed mysql
 
 if [ $? -ne 0 ]
 then 
-    echo "mysql server is not installed. please install"
+    echo "mysql is not installed. install it"
     dnf install mysql -y
     if [ $? -ne 0 ]
     then
-        echo "installed mysql not success"
-        exit 1
+        echo "installation failed and check"
     else
-        echo "installed successfully"
+        echo "installation is successfully completed"
     fi
 else
-    echo "mysql server already installed. nothing to do"
+    echo "mysql is alredy installed. nothing to do"
+fi
+
+dnf list installed git
+
+if [ $? -ne 0 ]
+then 
+    echo "git is not installed. install it"
+    dnf install git -y
+    if [ $? -ne 0 ]
+    then
+        echo "installation failed and check"
+    else
+        echo "installation is successfully completed"
+    fi
+else
+    echo "git is alredy installed. nothing to do"
 fi
