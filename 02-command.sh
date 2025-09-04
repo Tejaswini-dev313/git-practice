@@ -19,7 +19,7 @@ VALIDATE (){
     then 
         echo -e "$2 is $R failed $N"
     else
-        echo "$2 is $G success $N"
+        echo -e "$2 is $G success $N"
     fi
 }
 
@@ -28,7 +28,7 @@ dnf list installed mysql
 if [ $? -ne 0 ]
 then 
     echo "mysql is not installed. install it"
-    dnf install mysql -y
+    dnf installlll mysql -y
     VALIDATE $? "installing mysql"
 else
     echo "mysql is alredy installed. nothing to do"
