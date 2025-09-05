@@ -1,10 +1,5 @@
 # #!/bin/bash
 
-for i in {0....30}
-do 
-    echo $i
-done
-
 USERID=$(id -u)
 
 R="\e[31m"
