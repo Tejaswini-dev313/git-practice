@@ -12,8 +12,6 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 
-echo "user id is $USERID"
-
 if [ $USERID -ne 0 ]
 then 
     echo "run the scrip with root priveleges" | tee -a $LOG_FILE
@@ -27,6 +25,11 @@ VALIDATE (){
     else 
         echo -e "$2 is $G success $N" | tee -a $LOG_FILE
     fi
+}
+
+USAGE(){
+    echo -e "$R USAGE:: $N sudo sh 16-redirectors.sh package1 package2 ..."
+    exit 1
 }
 
 echo "script started executing at $(date)"
