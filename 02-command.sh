@@ -29,6 +29,10 @@ VALIDATE (){
     fi
 }
 
+# USAGE(){
+#     echo "USAGE:: sudo sh "
+# }
+
 for package in $@
 do 
     dnf list installed $package &>>$LOG_FILE
