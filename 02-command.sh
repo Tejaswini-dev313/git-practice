@@ -43,7 +43,7 @@ VALIDATE $? "Enabling mysql"
 systemctl start mysqld | tee -a $LOG_FILE
 VALIDATE $? "started mysql server"
 
-mysql -h mysql-prod.tejudevops.shop -u root -pExpenseApp@1 -e 'show databases;' | tee -a $LOG_FILE
+mysql -h mysql-prod.tejudevops.shop -u root -pExpenseApp@1 -e 'show databases;' &>> $LOG_FILE
 if [ $? -ne 0 ]
 then
     echo "MySQL root password is not setup, setting now" &>> $LOG_FILE
