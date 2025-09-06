@@ -27,13 +27,13 @@ VALIDATE (){
     fi
 }
 
-dnf module disable nodejs -y | tee -a $LOG_FILE
+dnf module disable nodejs -y &>>$LOG_FILE
 VALIDATE $? "Disabling nodejs"
 
-dnf module enable nodejs:20 -y | tee -a $LOG_FILE
+dnf module enable nodejs:20 -y &>>$LOG_FILE
 VALIDATE $? "Enableing nodejs"
 
-dnf install nodejs -y | tee -a $LOG_FILE
+dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "installing nodejs"
 
 id expense
@@ -64,7 +64,7 @@ cp /home/ec2-user/git-practice/backend.service /etc/systemd/system/backend.servi
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing MySQL Client"
 
-mysql -h mysql.daws81s.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql-prod.tejudevops.shop -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
 
 systemctl daemon-reload &>>$LOG_FILE
