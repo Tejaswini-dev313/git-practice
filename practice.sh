@@ -1,14 +1,21 @@
 #!/bin/bash
 
-set -e
+SOURCE_DIR=/home/ec2-user/logs
 
-failure(){
-    
-    echo "failed at $1:$2"
-}
+if [ -d $SOURCE_DIR ]
+then
+    echo "$SOURCE_DIR is exist"
+else
+    echo "$SOURCE_DIR does not exist"
+    exit 1
+fi
 
-trap 'failure "${LINENO}" "$BASH_COMMAND"' ERR
+FILE=$(find $SOURCE_DIR -name "*.log" -mtime -14)
 
-echo "Hello, running the script"
-echooo "Hii, learning script"
-echo "I have to get 3 L/m salary and have to learn more"
+echo "files: $FILE"
+
+while IFS=read -r line
+do
+ echo "deleting line $line"
+done <<< $FILE
+
