@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 
 echo "Hello, running the script"
 echooo "Hii, learning script"
