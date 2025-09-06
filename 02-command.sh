@@ -27,23 +27,29 @@ VALIDATE (){
     fi
 }
 
-USAGE(){
-    echo -e "$R USAGE:: $N sudo sh 16-redirectors.sh package1 package2 ..."
-    exit 1
-}
+# USAGE(){
+#     echo -e "$R USAGE:: $N sudo sh 16-redirectors.sh package1 package2 ..."
+#     exit 1
+# }
 
-echo "script started executing at $(date)"
+echo "script started executing at $(date)" | tee -a $LOG_FILE
 
-for package in $@
-do 
-    dnf list installed $package &>>$LOG_FILE
+dnf install mysql-server -y | tee -a $LOG_FILE
+VALIDATE $? "Installing mysql server"
 
-    if [ $? -ne 0 ]
-    then
-        echo "mysql is not installed. please install it" | tee -a $LOG_FILE
-        dnf install $package -y &>>$LOG_FILE
-        VALIDATE $? "installing $package"
-    else
-        echo "$package has been already installed. nothing to do" | tee -a $LOG_FILE
-    fi
-done 
+systemctl enable mysqld | tee -a $LOG_FILE
+VALIDATE $? "Enabling mysql"
+
+systemctl start mysqld | tee -a $LOG_FILE
+VALIDATE $? "started mysql server"
+
+mysql -h mysql-prod.tejudevops.shop -u root -pExpenseApp@1 -e 'show databases;' | tee -a $LOG_FILE
+if [ $? -ne 0 ]
+then
+    echo "MySQL root password is not setup, setting now" &>> $LOG_FILE
+    mysql_secure_installation --set-root-pass ExpenseApp@1
+    VALIDATE $? "setting up root password"
+else
+    echo "MySQL password is already setup...SKIPPING"
+fi
+
