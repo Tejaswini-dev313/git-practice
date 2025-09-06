@@ -27,3 +27,8 @@ if [ ! -d $DEST_DIR ]
 then
     echo "$DEST_DIR does not exist...please check"
 fi
+
+FILES=$(find ${SOURCE_DIR} -name "*.log" -mtime +14)
+
+echo "Files are $FILES"
+
