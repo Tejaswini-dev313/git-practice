@@ -4,3 +4,7 @@
   - name: print the message
     ansible.builtin.debug:
       msg: "Hi..im learnin devops"
+  
+  - name: print the message again for different task
+    ansible.builtin.debug:
+      msg: "I have to complete soon and need to concentrate more on devops."
