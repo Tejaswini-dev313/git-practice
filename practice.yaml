@@ -1,5 +1,6 @@
-- name: ping the server ip
+- name: entering the message
   hosts: web
   tasks:
-  - name: ping the ip
-    ansible.builtin.ping:
+  - name: print the message
+    ansible.builtin.debug:
+    
