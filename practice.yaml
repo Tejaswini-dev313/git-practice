@@ -9,5 +9,7 @@
       msg: "Hi, im learning {{COURSE}}, duration is {{Duration}}"
 
   - name: printing variable again
+    vars:
+      COURSE: git
     ansible.builtin.debug:
       msg: "Hi, im learning {{COURSE}}"
