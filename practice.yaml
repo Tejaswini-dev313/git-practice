@@ -1,14 +1,13 @@
-- name: installing nginx and run
+- name: print the variable
   hosts: web
-  become: yes
+  vars:
+    COURSE: devops with AWS
+    Duration: 120hrs
   tasks:
-  - name: install nginx
-    ansible.builtin.package:
-      name: nginx
-      state: present
-  
-  - name: enable nginx
-    ansible.builtin.service:
-      name: nginx
-      state: started
-      enabled: yes
+  - name: printing the varialbles
+    ansible.builtin.debug:
+      msg: "Hi, im learning {{COURSE}}, duration is {{Duration}}"
+
+  - name: printing variable again
+    ansible.builtin.debug:
+      msg: "Hi, im learning {{COURSE}}"
