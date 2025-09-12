@@ -1,17 +1,8 @@
-- name: print the variable
+- name: printing the variable
   hosts: web
   vars:
-    COURSE: AWS with devops
-    Duration: 120Hrs
+  - vars.yaml
   tasks:
-  - name: print the variable
+  - name: print variable
     ansible.builtin.debug:
-     msg: "Hi..im learning {{COURSE}} and duration is {{Duration}}"
-
-  - name: print the variable again 
-    vars: 
-      COURSE: ansible
-    ansible.builtin.debug:
-      msg: "Hi..im learning {{COURSE}} and duration is {{Duration}}"
-    
-
+      msg: "Hii..Im learning {{COURSE}} and duration is {{Duration}}"
