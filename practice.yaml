@@ -1,7 +1,7 @@
 - name: printing the variable
   hosts: web
   vars:
-  - vars.yaml
+   - vars.yaml
   tasks:
   - name: print variable
     ansible.builtin.debug:
