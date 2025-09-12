@@ -7,7 +7,11 @@
   - name: print the variable
     ansible.builtin.debug:
      msg: "Hi..im learning {{COURSE}} and duration is {{Duration}}"
-          
 
+  - name: print the variable again 
+    vars: 
+      COURSE: ansible
+    ansible.builtin.debug:
+      msg: "Hi..im learning {{COURSE}} and duration is {{Duration}}"
     
 
