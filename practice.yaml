@@ -1,16 +1,7 @@
-- name: check user exist or not
+- name: gather the facts
   hosts: web
   become: yes
   tasks:
-  - name: check user 
-    ansible.builtin.command: id expense
-    register: USER
-    ignore_errors: true
-  
-  - name: check user info
+  - name: print the gathering facts
     ansible.builtin.debug:
-      msg: "user info: {{USER}}"
-
-  - name: create user
-    ansible.builtin.command: useradd expense
-    when: USER.rc != 0
+      msg: "{{ ansible_facts }}"
