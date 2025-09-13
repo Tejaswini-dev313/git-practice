@@ -6,6 +6,6 @@
     ansible.builtin.debug:
      msg: "Hello {{item}}"
     loop:
-      teju
-      nimmi
-      chintu
+    - teju
+    - nimmi
+    - chintu
