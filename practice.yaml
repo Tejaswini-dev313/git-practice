@@ -1,13 +1,13 @@
-- name: check user is exist or not
+- name: check user exist or not
   hosts: web
   become: yes
   tasks:
-  - name: check the user
+  - name: check user 
     ansible.builtin.command: id expense
     register: USER
     ignore_errors: true
-
-  - name: check the user information
+  
+  - name: check user info
     ansible.builtin.debug:
       msg: "user info: {{USER}}"
 
