@@ -13,6 +13,6 @@
   
   - name: print if number greater than equal to 20
     ansible.builtin.debug:
-      msg: "Given number {{number}} is greater than equal to 20"
+      msg: "Given number {{number}} is greater than or equal to 20"
     when: number | int >= 20
   
