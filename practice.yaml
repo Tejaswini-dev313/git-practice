@@ -1,6 +1,6 @@
 - name: print the variables
   hosts: web
   tasks:
-    - name: printing the variable again
-      ansible.builtin.debug:
-        msg: "Hii. I am learning {{COURSE}} and duration is {{Duration}}"
+  - name: printing the variable again
+    ansible.builtin.debug:
+      msg: "Hii. I am learning {{COURSE}} and duration is {{Duration}}"
