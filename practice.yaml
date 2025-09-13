@@ -1,8 +1,13 @@
-- name: printing the variable
+- name: print the variables
   hosts: web
-  vars_files:
-  - vars.yaml
+  vars_prompt:
+    - name: COURSE
+      prompt: please enter the course name
+
+    - name: Duration
+      prompt: please enter the course duration
+  
   tasks:
-  - name: print variable
-    ansible.builtin.debug:
-      msg: "Hii..Im learning {{COURSE}} and duration is {{Duration}}"
+    - name: printing the variable again
+      ansible.builtin.debug:
+        msg: "Hii. I am learning {{COURSE}} and duration is {{Duration}}"
