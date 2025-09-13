@@ -1,18 +1,15 @@
-- name: To check number is less than or not
-  hosts: local
-  connection: local
-  vars_prompt:
-    - name: number
-      prompt: please enter the number
-      private: false
+- name: check user is exist or not
+  hosts: web
+  become: yes
   tasks:
-  - name: print if number less than 20
+  - name: check the user
+    ansible.builtin.command: id expense
+    register: USER
+
+  - name: check the user information
     ansible.builtin.debug:
-      msg: "Given number {{number}} is less than or not"
-    when: number | int < 20
-  
-  - name: print if number greater than equal to 20
-    ansible.builtin.debug:
-      msg: "Given number {{number}} is greater than or equal to 20"
-    when: number | int >= 20
-  
+      msg: "user info: {{USER}}"
+
+  - name: create user
+    ansible.builtin.debug: useradd expense
+    when: USER.rc != 0
