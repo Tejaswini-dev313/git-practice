@@ -1,6 +1,17 @@
-- name: print the variables
-  hosts: web
+- name: To check number is less than or not
+  hosts: local
+  connection: local
+  vars_prompt:
+    - name: number
+      prompt: please enter the number
   tasks:
-  - name: printing the variable again
+  - name: print if number less than 20
     ansible.builtin.debug:
-      msg: "Hii. I am learning {{COURSE}} and duration is {{Duration}}"
+      msg: "Given number {{number}} is less than or not"
+    when: number | int < 20
+  
+  - name: print if number greater than equal to 20
+    ansible.builtin.debug:
+      msg: "Given number {{number}} is greater than equal to 20"
+    when: number | int >= 20
+  
