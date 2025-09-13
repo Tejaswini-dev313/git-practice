@@ -1,12 +1,10 @@
-- name: install packages with loops
-  hosts: web
-  become: yes
+- name: loops
+  hosts: local
+  connection: local
   tasks:
-  - name: install packages
-    ansible.builtin.package:
-      name: "{{ item.name }}"
-      state: "{{ item.state }}"
+  - name: loops
+    ansible.builtin.debug:
+      msg: "Hii.{{item}}"
     loop:
-    - { name: 'nginx', state: 'present' }
-    - { name: 'postfix', state: 'absent' }
-    - { name: 'mysql', state: 'present' }
+    - teju
+    - chintu
