@@ -1,12 +1,36 @@
-- name: install package
-  hosts: web
-  become: yes
+- name: install ec2 instanses 
+  hosts: local
+  connection: local
+  vars:
+    subnet_id: subnet-00db26124111751a6
+    sg_id: sg-0bb84c0e5ef091a4a
+    ami_id: ami-09c813fb71547fc4f
+    instances:
+    - mysql
+    - backend
+    - frontend
+    zone: tejudevops.shop
+  
   tasks:
-  - name: install package by using loops
-    ansible.builtin.package:
-     name: "{{ item.name }}"
-     state: "{{ item.state }}"
-    
-    loop:
-    - { name: 'mysql', state: 'absent' }
-    - { name: 'nginx', state: 'present' }
+  - name: install boto3 and botocore
+    ansible.builtin.pip: 
+      name:
+        - boto3
+        - botocore
+      executable: pip3.9
+  
+  - name: install instances
+    ansible.builtin.ec2_instance:
+      name: "{{ item }}"
+      vpc_subnet_id: "{{ subnet_id }}"
+      security_group: "{{ sg_id }}"
+      instance_type: t2.micro
+      image_id: "{{ ami_id }}"
+    loop: "{{ instances }}"
+    register: "{{ ec2_instances }}"
+
+  - name: print output
+    ansible.builtin.debug:
+      msg: "{{ ec2_instances }}"
+
+  
